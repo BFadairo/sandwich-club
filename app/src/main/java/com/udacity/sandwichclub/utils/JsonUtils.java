@@ -37,24 +37,29 @@ public class JsonUtils {
             JSONObject baseName = baseSandwichRequest.getJSONObject("name");
             //Extract the value located within the "mainName" key
             String mainName = baseName.getString("mainName");
-            //Retrieve the JSONArray alsoKnownAs and store it in a variable to be iterated
+            //Retrieve the JSONArray alsoKnownAs and store
             JSONArray alsoKnownAs = baseName.getJSONArray("alsoKnownAs");
-            //Loop through the Array to retrieve each individually value
+            //Loop through the Array to retrieve each individual value for alsoKnownAs
             for (int i = 0; i < alsoKnownAs.length(); i++){
+                //Add the values to the aKnownAs list
                 aKnownAs.add(alsoKnownAs.get(i).toString());
             }
 
+            //Retrieve the JSONArray ingredients and store it
             JSONArray ingredientsArray = baseSandwichRequest.getJSONArray("ingredients");
+            //Loop through the Array to retrieve each individual value for ingredients
             for (int j = 0; j < ingredientsArray.length(); j++){
                 ingredients.add(ingredientsArray.get(j).toString());
             }
 
-
-
+            //Retrieve the description from the key: description
             String description = baseSandwichRequest.getString("description");
+            //Retrieve the place of origin from the key: placeOfOrigin
             String placeOfOrigin = baseSandwichRequest.getString("placeOfOrigin");
+            //Retrieve the image link from the key: image
             String image = baseSandwichRequest.getString("image");
 
+            //Update the Sandwich that was initialized earlier with information pulled from JSON
             sandwich = new Sandwich(mainName,aKnownAs,placeOfOrigin,description,image,ingredients);
 
         } catch (Exception e){
